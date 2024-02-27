@@ -1,15 +1,15 @@
 import { NavLink, useNavigate } from "react-router-dom"
-//import { userLogin } from "../services/api"
+import { getToken } from "../actions/login.action"
+import {store} from "../index"
 import { useRef } from "react"
-import { useDispatch } from "react-redux"
-import { userLogin, getUserInfo } from "../actions/user.action"
+import { useSelector } from "react-redux"
+//import { userLogin } from "../services/api"
 
 const SignIn = () => {
     const navigate = useNavigate()
     const form = useRef()
-    const dispatch = useDispatch()
 
-    const handleForm = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
 
         const loginData = {
@@ -17,15 +17,17 @@ const SignIn = () => {
             password: form.current[1].value
         }
 
-        dispatch(userLogin(loginData, navigate))
+        store.dispatch(getToken(loginData, navigate))
     }
+
+    const token = useSelector((state) => state.loginReducer)
 
     return <>
         <main className="main bg-dark">
             <section className="sign-in-content">
                 <i className="fa fa-user-circle sign-in-icon"></i>
                 <h1>Sign In</h1>
-                <form ref={form} onSubmit={e => handleForm(e)}>
+                <form ref={form} onSubmit={(e) => {handleSubmit(e)}}>
                     <div className="input-wrapper">
                         <label htmlFor="email">E-mail</label>
                         <input type="email" id="email" />

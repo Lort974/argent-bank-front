@@ -1,11 +1,45 @@
 import { NavLink, useNavigate } from "react-router-dom"
 import argentBankLogo from "../assets/images/argentBankLogo.png"
-import { logout } from "../services/logout"
 import { useSelector } from "react-redux"
+import { useEffect } from "react"
+import { getUserInfo } from "../actions/user.action"
+import { store } from ".."
+import { deleteToken } from "../actions/login.action"
 
 const Header = () => {
-    const userSignedIn = localStorage.getItem("token")
-    const navigate = useNavigate
+    const navigate = useNavigate()
+
+    const token = useSelector((state) => state.loginReducer)
+
+    useEffect(() => {
+        if (token.token) {
+            store.dispatch(getUserInfo(token.token))
+        }
+    }, [token.token])
+    
+    const user = useSelector((state) => state.userReducer)
+    
+    const handleSignOut = (e) => {
+        e.preventDefault()
+
+        store.dispatch(deleteToken(navigate))
+    }
+
+    const isSignedIn = token.token ? true : false
+
+    const navLinks = isSignedIn ?
+        <>
+            <NavLink className="main-nav-item" to="profile">
+                <i className="fa fa-user-circle"></i> {user.firstName}
+            </NavLink>
+            <a className="main-nav-item" onClick={(e) => handleSignOut(e)}>
+                <i className="fa fa-sign-out"></i> Sign out
+            </a>
+        </>
+        :
+        <NavLink className="main-nav-item" to="sign-in">
+            <i className="fa fa-user-circle"></i> Sign In
+        </NavLink>
 
     return <>
         <header>
@@ -19,21 +53,7 @@ const Header = () => {
                     <h1 className="sr-only">Argent Bank</h1>
                 </NavLink>
                 <div>
-                    {
-                        userSignedIn ? 
-                        <>
-                            <NavLink className="main-nav-item" to="user">
-                                <i className="fa fa-user-circle"></i> My profile
-                            </NavLink>
-                            <NavLink onClick={(e) => logout(navigate)} className="main-nav-item" to="/">
-                                <i className="fa fa-sign-out"></i> Sign Out
-                            </NavLink>
-                        </>
-                        :
-                        <NavLink className="main-nav-item" to="sign-in">
-                            <i className="fa fa-user-circle"></i> Sign In
-                        </NavLink>
-                    }
+                    {navLinks}
                 </div>
             </nav>
         </header>
