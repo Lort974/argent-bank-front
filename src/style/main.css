@@ -206,6 +206,25 @@ body {
   font-size: 1.2rem;
 }
 
+.edit-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.edit-wrapper input {
+  padding: 5px;
+  font-size: 1.2rem;
+}
+
+.edit-wrapper input:nth-child(1), .edit-wrapper button:nth-child(3) {
+  justify-self: right;
+}
+
+.edit-wrapper input:nth-child(2), .edit-wrapper button:nth-child(4) {
+  justify-self: left;
+}
+
 .footer {
   display: flex;
   justify-content: center;
