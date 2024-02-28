@@ -20,7 +20,9 @@ const SignIn = () => {
         store.dispatch(getToken(loginData, navigate))
     }
 
-    const token = useSelector((state) => state.loginReducer)
+    // const token = useSelector((state) => state.loginReducer)
+
+    const errorMessage = useSelector(state => state.loginReducer).errorMessage
 
     return <>
         <main className="main bg-dark">
@@ -40,9 +42,7 @@ const SignIn = () => {
                         <input type="checkbox" id="remember-me" />
                         <label htmlFor="remember-me">Remember me</label>
                     </div>
-                    {/*PLACEHOLDER DUE TO STATIC SITE*/}
-                    {/* <NavLink className="sign-in-button" to="../user">Sign In</NavLink> */}
-                    {/*SHOULD BE THE BUTTON BELOW*/}
+                    {errorMessage && <div className="error-message">{errorMessage}</div>}
                     <button className="sign-in-button">
                         Sign In
                     </button>

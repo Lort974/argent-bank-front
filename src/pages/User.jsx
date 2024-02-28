@@ -76,8 +76,8 @@ const User = () => {
                 {
                     editToggle ?
                     <form ref={form} className="edit-wrapper" onSubmit={(e) => handleEdit(e)}>
-                        <input type="text" id="firstname" placeholder={user.firstName} autoFocus={true} />
-                        <input type="text" id="lastname" placeholder={user.lastName} />
+                        <input required type="text" id="firstname" placeholder={user.firstName} autoFocus={true} />
+                        <input required type="text" id="lastname" placeholder={user.lastName} />
                         <button type="submit" className="edit-button">Save</button>
                         <button type="button" className="edit-button" onClick={() => setEditToggle(!editToggle)}>Cancel</button>
                     </form>

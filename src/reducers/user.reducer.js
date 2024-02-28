@@ -10,7 +10,7 @@ export default function userReducer(state = initialState, action) {
         case UPDATE_USER_INFO:
             return action.payload
         case DELETE_TOKEN:
-            return action.payload
+            return initialState
         default:
             return state
     }

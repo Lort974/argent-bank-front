@@ -225,6 +225,16 @@ body {
   justify-self: left;
 }
 
+@media screen and (max-width: 600px) {
+  .edit-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .edit-wrapper * {
+    justify-self: center !important;
+    width: 250px;
+  }
+}
+
 .footer {
   display: flex;
   justify-content: center;
@@ -311,4 +321,9 @@ body {
   .transaction-button {
     width: 200px;
   }
+}
+
+.error-message {
+  margin: 10px;
+  color: #ff0000;
 }

@@ -9,23 +9,23 @@ import { deleteToken } from "../actions/login.action"
 const Header = () => {
     const navigate = useNavigate()
 
-    const token = useSelector((state) => state.loginReducer)
+    const token = useSelector((state) => state.loginReducer).token
 
     useEffect(() => {
-        if (token.token) {
-            store.dispatch(getUserInfo(token.token))
+        if (token) {
+            store.dispatch(getUserInfo(token))
         }
-    }, [token.token])
+    }, [])
     
     const user = useSelector((state) => state.userReducer)
-    
+
     const handleSignOut = (e) => {
         e.preventDefault()
 
         store.dispatch(deleteToken(navigate))
     }
 
-    const isSignedIn = token.token ? true : false
+    const isSignedIn = token ? true : false
 
     const navLinks = isSignedIn ?
         <>
