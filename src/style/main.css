@@ -75,6 +75,15 @@ body {
   width: 200px;
 }
 
+@media screen and (max-width: 400px) {
+  .main-nav-logo-image {
+    width: 150px;
+  }
+  .main-nav {
+    padding: 5px 0px;
+  }
+}
+
 .hero {
   background-image: url("../assets/images/bank-tree.jpeg");
   background-position: 0 -50px;

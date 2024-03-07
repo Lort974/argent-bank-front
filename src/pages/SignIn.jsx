@@ -1,35 +1,42 @@
-import { NavLink, useNavigate } from "react-router-dom";
+// Importation des modules nécessaires
+import { useNavigate } from "react-router-dom";
 import { getToken } from "../actions/login.action";
 import { store } from "../index";
 import { useRef } from "react";
 import { useSelector } from "react-redux";
-//import { userLogin } from "../services/api"
 
 const SignIn = () => {
+  // Utilisation du hook useNavigate pour la navigation
   const navigate = useNavigate();
+  // Utilisation du hook useRef pour référencer le formulaire
   const form = useRef();
 
+  // Fonction pour gérer la soumission du formulaire
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Si la case "remember me" est cochée, sauvegarde l'email dans le localStorage
     if (form.current[2].checked) {
       localStorage.setItem("userEmail", form.current[0].value);
     } else {
+      // Sinon, supprime l'email du localStorage
       localStorage.removeItem("userEmail");
     }
 
+    // Création des données de connexion
     const loginData = {
       email: form.current[0].value,
       password: form.current[1].value,
     };
 
+    // Dispatch de l'action pour obtenir le token
     store.dispatch(getToken(loginData, navigate));
   };
 
-  // const token = useSelector((state) => state.loginReducer)
-
+  // Récupération du message d'erreur depuis le state du reducer de connexion
   const errorMessage = useSelector((state) => state.loginReducer).errorMessage;
 
+  // Rendu du composant
   return (
     <>
       <main className="main bg-dark">

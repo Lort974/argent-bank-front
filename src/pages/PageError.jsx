@@ -1,9 +1,9 @@
 const PageError = () => {
-    return <>
-        <div>
-            Contenu de la page d'erreur
-        </div>
+  return (
+    <>
+      <div>Error 404. Page not found.</div>
     </>
-}
+  );
+};
 
-export default PageError
+export default PageError;
