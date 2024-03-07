@@ -49,6 +49,7 @@ body {
 .main-nav a {
   font-weight: bold;
   color: #2c3e50;
+  cursor: pointer;
 }
 
 .main-nav a.router-link-exact-active {
@@ -75,7 +76,7 @@ body {
 }
 
 .hero {
-  background-image: url('../assets/images/bank-tree.jpeg');
+  background-image: url("../assets/images/bank-tree.jpeg");
   background-position: 0 -50px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -217,11 +218,13 @@ body {
   font-size: 1.2rem;
 }
 
-.edit-wrapper input:nth-child(1), .edit-wrapper button:nth-child(3) {
+.edit-wrapper input:nth-child(1),
+.edit-wrapper button:nth-child(3) {
   justify-self: right;
 }
 
-.edit-wrapper input:nth-child(2), .edit-wrapper button:nth-child(4) {
+.edit-wrapper input:nth-child(2),
+.edit-wrapper button:nth-child(4) {
   justify-self: left;
 }
 
